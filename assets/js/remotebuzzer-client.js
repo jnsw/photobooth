@@ -226,10 +226,7 @@ function initRemoteBuzzerFromDOM() {
         };
 
         api.enabled = function () {
-            return (
-                config.remotebuzzer.usebuttons &&
-                typeof onStandaloneGalleryView === 'undefined'
-            );
+            return (config.remotebuzzer.usebuttons && typeof onStandaloneGalleryView === 'undefined');
         };
 
         api.takePicture = function () {

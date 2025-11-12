@@ -830,6 +830,10 @@ class PhotoboothConfiguration implements ConfigurationInterface
                 ->scalarNode('index_redirect')->defaultValue('login')->end()
                 ->booleanNode('manual')->defaultValue(false)->end()
                 ->booleanNode('localhost_manual')->defaultValue(false)->end()
+                ->arrayNode('ip_whitelist')
+                    ->prototype('scalar')->end()
+                    ->defaultValue([]) // Falls nichts konfiguriert
+                ->end()
             ->end();
     }
 

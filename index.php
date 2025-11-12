@@ -21,9 +21,13 @@ if ($config['chromaCapture']['enabled']) {
     exit();
 }
 
+$clientIp = $_SERVER['REMOTE_ADDR'] ?? '';
+$isWhitelistedIp = in_array($clientIp, $config['protect']['ip_whitelist'] ?? [], true);
+
 // Login / Authentication check
 if (
     !$config['login']['enabled'] ||
+    $isWhitelistedIp ||
     (!$config['protect']['localhost_index'] && (isset($_SERVER['SERVER_ADDR']) && $_SERVER['REMOTE_ADDR'] === $_SERVER['SERVER_ADDR'])) ||
     ((isset($_SESSION['auth']) && $_SESSION['auth'] === true) || !$config['protect']['index'])
 ) {
